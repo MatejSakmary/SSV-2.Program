@@ -6,17 +6,17 @@ import tul.ssv.view.PlanetHolder;
 import javax.swing.*;
 import java.awt.*;
 
-public class main extends JFrame{
+public class Main extends JFrame{
 
     public final int FPS = 60;
     public final PlanetHolder planetHolder = new PlanetHolder();
 
     public static void main(String[] args) {
-        new main();
+        new Main();
     }
 
 
-    public main() throws HeadlessException {
+    public Main() throws HeadlessException {
 
         this.setTitle("GUI aplikace");
         this.setSize(800, 600);
