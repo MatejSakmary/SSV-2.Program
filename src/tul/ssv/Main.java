@@ -24,13 +24,14 @@ public class Main extends JFrame{
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.RED);
         this.setLayout(new BorderLayout());
 
 
         Container container = getContentPane();
 
         container.add(planetHolder, BorderLayout.CENTER);
+        container.add(new JButton("foo bar"), BorderLayout.EAST);
 
         while (true) {
             repaint();

@@ -8,7 +8,8 @@ public class PlanetHolder extends javax.swing.JPanel {
 
     public PlanetHolder() {
         this.add(planet);
-        this.setBackground(Color.BLACK);
+        this.setLayout(null);
+        this.setBackground(Color.WHITE);
     }
 
 }
