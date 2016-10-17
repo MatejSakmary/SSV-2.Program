@@ -2,7 +2,6 @@ package tul.ssv;
 
 import tul.ssv.model.Planet;
 import tul.ssv.view.PlanetHolder;
-import tul.ssv.view.PlanetDraw;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -29,13 +28,18 @@ public class Main extends JFrame{
 
 
         Container container = getContentPane();
-
         container.add(planetHolder, BorderLayout.CENTER);
-        container.add(new JButton("foo bar"), BorderLayout.EAST);
+        
+        planetHolder.add(0, 100, 100, 20, Color.yellow);
+        planetHolder.add(0, 110, 110, 30, Color.RED);
 
         while (true) {
+            double[][] data = planetHolder.save();
+            data = tul.ssv.math.Math.foo(data);
+            planetHolder.load(data);
+            
             repaint();
-
+            
             try {
                 Thread.currentThread().sleep(1000 / FPS);
             } catch (InterruptedException ex) {
