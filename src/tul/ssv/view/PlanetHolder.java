@@ -25,8 +25,12 @@ public class PlanetHolder extends javax.swing.JPanel {
         }
     }
 
+    public void add(Planet planet) {
+        items.add(planet);
+    }
+
     public void add(double mass, double x, double y, double size, Color color) {
-        items.add(new Planet(mass, x, y, size, color));
+        this.add(new Planet(mass, x, y, size, color));
     }
 
     public Planet get(int i) {
