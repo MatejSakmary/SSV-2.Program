@@ -1,9 +1,6 @@
 package tul.ssv.utils;
 
-/**
- *
- * @author jan-hybs
- */
+
 public class PointBuffer<T> {
 
     final int length;

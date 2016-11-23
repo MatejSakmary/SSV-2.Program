@@ -6,10 +6,7 @@ import java.awt.RenderingHints;
 import tul.ssv.model.Planet;
 import tul.ssv.utils.Point;
 
-/**
- *
- * @author jan-hybs
- */
+
 public class DrawTool {
 
     public DrawTool() {
@@ -48,8 +45,8 @@ public class DrawTool {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         graphics2D.fillOval(
-                (int) planet.getX(),
-                (int) planet.getY(),
+                (int) ((planet.getX()/500000)+(planet.getSize()/2)),
+                (int) ((planet.getY()/500000)-(planet.getSize()/2)),
                 (int) planet.getSize(),
                 (int) planet.getSize());
     }

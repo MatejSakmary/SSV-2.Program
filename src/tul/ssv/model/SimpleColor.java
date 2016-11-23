@@ -2,10 +2,7 @@ package tul.ssv.model;
 
 import java.awt.Color;
 
-/**
- *
- * @author jan-hybs
- */
+
 public class SimpleColor {
 
     public SimpleColor(String name, Color color) {

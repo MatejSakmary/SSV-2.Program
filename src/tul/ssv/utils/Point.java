@@ -1,9 +1,5 @@
 package tul.ssv.utils;
 
-/**
- *
- * @author jan-hybs
- */
 public class Point {
 
     public double x, y;

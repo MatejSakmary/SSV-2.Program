@@ -24,7 +24,7 @@ public class Main extends JFrame {
     public Main() throws HeadlessException {
 
         this.setTitle("GUI aplikace");
-        this.setSize(800, 600);
+        this.setSize(1920, 1080);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setBackground(Color.RED);
@@ -34,17 +34,16 @@ public class Main extends JFrame {
         container.add(planetHolder, BorderLayout.CENTER);
         container.add(controls, BorderLayout.EAST);
         
-        Planet a = new Planet(1e12, 300, 300, 20, Color.green);
-        Planet b = new Planet(1e12, 150, 150, 10, Color.red);
-        
-        b.setVx(.5);
-        b.setVy(.3);
-        
-        a.setVx(-.3);
-        a.setVy(.3);
-        
+        Planet a = new Planet(59736*10e19, 349*10e5, 200*10e5, 20, Color.blue);
+        Planet b = new Planet(1989*10e26, 200*10e5, 200*10e5, 100, Color.yellow);
+        Planet c = new Planet(59736*10e19, 400*10e5, 200*10e5, 10, Color.red);
+
+        a.setVy(700000);
+        c.setVy(900000);
+
         planetHolder.add(a);
         planetHolder.add(b);
+        planetHolder.add(c);
         planetHolder.addMouseListener(new MouseAdapter() {
 
             @Override
