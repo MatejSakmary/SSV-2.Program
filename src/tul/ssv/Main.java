@@ -33,9 +33,18 @@ public class Main extends JFrame {
         Container container = getContentPane();
         container.add(planetHolder, BorderLayout.CENTER);
         container.add(controls, BorderLayout.EAST);
-
-        planetHolder.add(0, 100, 100, 20, Color.yellow);
-        planetHolder.add(0, 110, 110, 30, Color.RED);
+        
+        Planet a = new Planet(1e12, 300, 300, 20, Color.green);
+        Planet b = new Planet(1e12, 150, 150, 10, Color.red);
+        
+        b.setVx(.5);
+        b.setVy(.3);
+        
+        a.setVx(-.3);
+        a.setVy(.3);
+        
+        planetHolder.add(a);
+        planetHolder.add(b);
         planetHolder.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -47,9 +56,10 @@ public class Main extends JFrame {
 
         while (true) {
             double[][] data = planetHolder.save();
-            data = tul.ssv.math.Math.foo(data);
+            data = tul.ssv.math.Math.step(data);
             planetHolder.load(data);
-
+            
+            controls.updateDebugArea();
             repaint();
 
             try {
