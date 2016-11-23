@@ -7,10 +7,6 @@ import javax.swing.DefaultComboBoxModel;
 import tul.ssv.model.Planet;
 import tul.ssv.model.SimpleColor;
 
-/**
- *
- * @author jan-hybs
- */
 public class Controls extends javax.swing.JPanel {
 
     public PlanetHolder planetHolder;

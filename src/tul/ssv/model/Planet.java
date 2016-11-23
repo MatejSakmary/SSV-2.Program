@@ -12,6 +12,7 @@ public class Planet {
     private double size;
     private Color color;
 
+
     public Planet(double mass, double x, double y, double size, Color color) {
         this.mass = mass;
         this.x = x;
