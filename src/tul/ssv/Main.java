@@ -43,6 +43,7 @@ public class Main extends JFrame {
 
         planetHolder.add(a);
         planetHolder.add(b);
+        planetHolder.add(c);
         planetHolder.addMouseListener(new MouseAdapter() {
 
             @Override
