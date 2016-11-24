@@ -24,15 +24,15 @@ public class DrawTool {
         
         int size = planet.history.getSize();
         int start = planet.history.getPointer();
-        int radiusHalf =  (int) planet.getSize()/2;
+        int radius =  (int) planet.getSize();
         if (size < 2) return;
         
         for (int i = start; i < start + size - 1; i++) {
             Point p0 = planet.history.get(i);
             Point p1 = planet.history.get(i+1);
             g.drawLine(
-                    (int) (p0.x + radiusHalf), (int) (p0.y + radiusHalf),
-                    (int) (p1.x + radiusHalf), (int) (p1.y + radiusHalf)
+                    (int) ((p0.x/500000) + radius), (int) (p0.y/500000) ,
+                    (int) ((p1.x/500000) + radius), (int) (p1.y/500000)
             );
         }
     }
