@@ -1,5 +1,6 @@
 package tul.ssv;
 
+import sun.security.provider.Sun;
 import tul.ssv.model.Planet;
 import tul.ssv.view.PlanetHolder;
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class Main extends JFrame {
 
     public java.util.List<Planet> items = new ArrayList<>();
 
-    public final int FPS = 60;
+    public final int FPS = 30;
     public final PlanetHolder planetHolder = new PlanetHolder();
     public final Controls controls = new Controls(planetHolder);
 
@@ -24,7 +25,7 @@ public class Main extends JFrame {
     public Main() throws HeadlessException {
 
         this.setTitle("GUI aplikace");
-        this.setSize(1920, 1080);
+        this.setSize(1000, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setBackground(Color.RED);
@@ -34,16 +35,19 @@ public class Main extends JFrame {
         container.add(planetHolder, BorderLayout.CENTER);
         container.add(controls, BorderLayout.EAST);
         
-        Planet a = new Planet(59736*10e19, 3496*10e4, 200*10e5, 20, Color.blue);
-        Planet b = new Planet(1989*10e26, 200*10e5, 200*10e5, 100, Color.yellow);
-        Planet c = new Planet(7347*10e19, 349384*10e2, 200*10e5, 10, Color.black);
+        Planet earth = new Planet(59736*10e19, 3496*10e4, 200*10e5, 20, Color.blue);
+        Planet sun = new Planet(1989*10e26, 200*10e5, 200*10e5, 100, Color.yellow);
+        Planet moon = new Planet(7347*10e19, 349984*10e2, 200*10e5, 5, Color.black);
+        Planet sun2 = new Planet(1989*10e26, 300*10e5, 200*10e5, 100, Color.yellow);
+        Planet experimental = new Planet(7347*10e25, 200*10e5, 300*10e5, 20, Color.black);
 
+        moon.setVy(-42000);
+        earth.setVy(-900000);
+        experimental.setVy(0);
 
-        a.setVy(-750000);
-
-        planetHolder.add(a);
-        planetHolder.add(b);
-        planetHolder.add(c);
+        planetHolder.add(earth);
+        planetHolder.add(moon);
+        planetHolder.add(sun);
         planetHolder.addMouseListener(new MouseAdapter() {
 
             @Override

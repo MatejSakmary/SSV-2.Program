@@ -15,8 +15,6 @@ public class Math {
     public static final int X_SPEED = 3;
     public static final int Y_SPEED = 4;
 
-    private static Random random = new Random(1234);
-
     public static double[][] step(double[][] data) {
         final int PLANET_COUNT = data.length;
 

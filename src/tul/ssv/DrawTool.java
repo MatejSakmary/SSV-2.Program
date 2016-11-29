@@ -31,8 +31,8 @@ public class DrawTool {
             Point p0 = planet.history.get(i);
             Point p1 = planet.history.get(i+1);
             g.drawLine(
-                    (int) ((p0.x/500000) + radius), (int) (p0.y/500000) ,
-                    (int) ((p1.x/500000) + radius), (int) (p1.y/500000)
+                    (int) ((p0.x/500000) ), (int) (p0.y/500000) ,
+                    (int) ((p1.x/500000) ), (int) (p1.y/500000)
             );
         }
     }
@@ -45,7 +45,7 @@ public class DrawTool {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         graphics2D.fillOval(
-                (int) ((planet.getX()/500000)+(planet.getSize()/2)),
+                (int) ((planet.getX()/500000)-(planet.getSize()/2)),
                 (int) ((planet.getY()/500000)-(planet.getSize()/2)),
                 (int) planet.getSize(),
                 (int) planet.getSize());
