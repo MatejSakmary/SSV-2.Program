@@ -6,7 +6,7 @@ import java.util.Random;
 public class Math {
 
     static final double G = 0.00000000006673;
-    static final double deltaT = 1;
+    static final double deltaT = 1.0;
 
 
     public static final int MASS = 0;

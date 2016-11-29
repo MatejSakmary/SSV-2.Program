@@ -20,24 +20,19 @@ public class PlanetHolder extends javax.swing.JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         
-
+        drawTool.setOrigin(getSize());
         for (Planet planet : items) {
             drawTool.drawHistory(g, planet);
         }
         
         for (Planet planet : items) {
             drawTool.draw(g, planet);
-            planet.saveHistory();
         }
         
     }
 
     public void add(Planet planet) {
         items.add(planet);
-    }
-
-    public void add(double mass, double x, double y, double size, Color color) {
-        this.add(new Planet(mass, x, y, size, color));
     }
 
     public Planet get(int i) {
@@ -56,7 +51,11 @@ public class PlanetHolder extends javax.swing.JPanel {
         for (int i = 0; i < data.length; i++) {
             get(i).load(data[i]);
         }
+        
+        for (Planet planet : items) {
+            planet.saveHistory();
+        }
     }
-
+    
 
 }

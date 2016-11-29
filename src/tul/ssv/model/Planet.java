@@ -7,7 +7,7 @@ import tul.ssv.utils.PointBuffer;
 public class Planet {
     
     public static final int PLANET_DATA_SIZE = 5;
-    public static final int HISTORY_SIZE = 1000;
+    public static final int HISTORY_SIZE = 10*1000;
     
 
     private double mass;
@@ -17,6 +17,7 @@ public class Planet {
     private double vy;
     private double size;
     private Color color;
+    private String name;
     
     public final PointBuffer<Point> history = new PointBuffer<>(HISTORY_SIZE);
     
@@ -25,12 +26,13 @@ public class Planet {
     }
 
 
-    public Planet(double mass, double x, double y, double size, Color color) {
+    public Planet(String name, double mass, double x, double y, double size, Color color) {
         this.mass = mass;
         this.x = x;
         this.y = y;
         this.size = size;
         this.color = color;
+        this.name = name;
     }
 
     public double[] save() {
@@ -107,6 +109,12 @@ public class Planet {
         this.vy = vy;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    
+    
     
     
 }
