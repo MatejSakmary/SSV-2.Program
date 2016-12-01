@@ -98,7 +98,7 @@ public class Main extends JFrame {
 
         while (true) {
             long time = System.nanoTime();
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < controls.ROUND_COUNT; i++) {
                 double[][] data = planetHolder.save();
                 data = tul.ssv.math.Math.step(data);
                 planetHolder.load(data);

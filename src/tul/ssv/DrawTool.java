@@ -48,11 +48,16 @@ public class DrawTool {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         double shrinkRatio = defaultScale / (double) drawScale;
+        int x, y, w, h;
+        x = width / 2 + (int) ((planet.getX() / drawScale) - (planet.getSize() / 2)* shrinkRatio);
+        y = height / 2 + (int) ((planet.getY() / drawScale) - (planet.getSize() / 2)* shrinkRatio);
+        w = (int) (planet.getSize() * shrinkRatio);
+        h = (int) (planet.getSize() * shrinkRatio);
+        
         graphics2D.fillOval(
-                width / 2 + (int) ((planet.getX() / drawScale) - (planet.getSize() / 2)* shrinkRatio),
-                height / 2 + (int) ((planet.getY() / drawScale) - (planet.getSize() / 2)* shrinkRatio),
-                (int) (planet.getSize() * shrinkRatio),
-                (int) (planet.getSize() * shrinkRatio));
+                x, y,
+                w, h
+        );
     }
 
     public void setOrigin(Dimension size) {

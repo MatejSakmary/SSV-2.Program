@@ -73,6 +73,7 @@ public class Controls extends javax.swing.JPanel {
         speedSlider = new javax.swing.JSlider();
         fps = new javax.swing.JLabel();
         drawScale = new javax.swing.JSlider();
+        pausePlay = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(240, 600));
 
@@ -143,6 +144,13 @@ public class Controls extends javax.swing.JPanel {
             }
         });
 
+        pausePlay.setText("Pause");
+        pausePlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pausePlayActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,6 +158,8 @@ public class Controls extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pausePlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(drawScale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -157,7 +167,7 @@ public class Controls extends javax.swing.JPanel {
                         .addComponent(sizeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(colorPreview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(colorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -179,16 +189,17 @@ public class Controls extends javax.swing.JPanel {
                             .addComponent(massSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(speedSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(fps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(drawScale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(pausePlay)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(yPos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,7 +230,7 @@ public class Controls extends javax.swing.JPanel {
                     .addComponent(planetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(drawScale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fps)
@@ -236,11 +247,13 @@ public class Controls extends javax.swing.JPanel {
     }//GEN-LAST:event_colorComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        double width = DrawTool.width;
+        int height = DrawTool.height;
         Planet p = new Planet(
                 planetName.getText().trim(),
                 Math.pow(10.0, massSlider.getValue()),
-                (Integer.parseInt(xPos.getText())-(DrawTool.width/2)) * DrawTool.drawScale,     // !!!!!!!! NOT FIXED !!!!!!!!!
-                (Integer.parseInt(yPos.getText())-(DrawTool.height/2)) * DrawTool.drawScale,    // works just when draw scale is ~ under half of a slider
+                (Integer.parseInt(xPos.getText())-(DrawTool.width/2))  * (double) DrawTool.drawScale,     // !!!!!!!! NOT FIXED !!!!!!!!!
+                (Integer.parseInt(yPos.getText())-(DrawTool.height/2)) * (double) DrawTool.drawScale,    // works just when draw scale is ~ under half of a slider
                 sizeSlider.getValue(),
                 ((SimpleColor) colorComboBox.getSelectedItem()).color
         );
@@ -251,13 +264,28 @@ public class Controls extends javax.swing.JPanel {
     private void drawScaleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_drawScaleStateChanged
         DrawTool.drawScale = drawScale.getValue();
     }//GEN-LAST:event_drawScaleStateChanged
+
+    private void pausePlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pausePlayActionPerformed
+        if(doPause) {
+            doPause = false;
+            pausePlay.setText("Play");
+            ROUND_COUNT = 0;
+        }else{
+            doPause = true;
+            pausePlay.setText("Pause");
+            ROUND_COUNT = 100;
+        }
+    }//GEN-LAST:event_pausePlayActionPerformed
     
     public void setFPS(long nano) {
         fps.setText(
                 Double.toString(1.0 / (nano / 1.0e9))
         );
     }
-
+    
+    public static int ROUND_COUNT = 100;
+    private boolean doPause = true;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox colorComboBox;
     private javax.swing.JPanel colorPreview;
@@ -273,6 +301,7 @@ public class Controls extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSlider massSlider;
+    private javax.swing.JButton pausePlay;
     private javax.swing.JTextField planetName;
     private javax.swing.JSlider sizeSlider;
     private javax.swing.JSlider speedSlider;
